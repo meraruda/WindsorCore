@@ -1,0 +1,9 @@
+version: '3.4'
+
+services:
+  angular:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development    
+  react:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development

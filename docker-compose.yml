@@ -1,0 +1,38 @@
+version: '3.4'
+
+networks:
+  netcore-dev:
+
+services:
+  angular:
+    image: angular-p
+    container_name: ng-rt
+    build:
+      context: Angular/.
+      dockerfile: Dockerfile
+    networks:
+      - netcore-dev
+    expose:
+      - "4200"
+    ports:
+      - "4200:80"  
+    tty: true
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+  react:
+    image: react-p
+    container_name: react-rt
+    build:
+      context: React/.
+      dockerfile: Dockerfile
+    networks:
+      - netcore-dev
+    expose:
+      - "3000"
+    ports:
+      - "3000:80"
+    tty: true
+    depends_on:
+      - "angular"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
